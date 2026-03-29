@@ -7,37 +7,33 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "transaction")
 public class Transaction {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private BigDecimal amount;
+    private int id;
+    private String type; // income or expense
+    private double amount;
     private String category;
-    private LocalDate date;
-    private String type;
+    private String date;
 
-    // ✅ Proper relation to User table
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    public Transaction(int id, String type, double amount, String category, String date) {
+        this.id = id;
+        this.type = type;
+        this.amount = amount;
+        this.category = category;
+        this.date = date;
+    }
 
-    // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getType() {
+        return type;
+    }
 
-    public BigDecimal getAmount() { return amount; }
-    public void setAmount(BigDecimal amount) { this.amount = amount; }
+    public double getAmount() {
+        return amount;
+    }
 
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
+    public String getCategory() {
+        return category;
+    }
 
-    public LocalDate getDate() { return date; }
-    public void setDate(LocalDate date) { this.date = date; }
-
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
-
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public String getDate() {
+        return date;
+    }
 }
